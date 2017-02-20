@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindbugsPlugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="findbugsplugin.xsd"
+                pluginid="com.worksap.findbugs.plugin" provider="Works Applications"
+                website="http://www.worksap.co.jp/">
+    <Detector class="com.worksap.findbugs.plugin.core.ControllerFieldUsageDetector"
+              reports="HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_DAO,HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_SHARED_SERVICE" />
+    <Detector class="com.worksap.findbugs.plugin.core.ServiceFieldUsageDetector" reports="HB_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE" />
+    <Detector class="com.worksap.findbugs.plugin.core.SharedServiceFieldUsageDetector" reports="HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE" />
+    <Detector class="com.worksap.findbugs.plugin.java.JavaUtilDateDetector" reports="HB_USE_JAVA_UTIL_DATE" />
+    <Detector class="com.worksap.findbugs.plugin.java.SQLConnectionDetector"
+              reports="HB_CREATE_SQL_CONNECTION,HB_GET_SQL_CONNECTION_FROM_DATASOURCE,HB_USE_SQL_CONNECTION" />
+    <Detector class="com.worksap.findbugs.plugin.forneus.NonFinalForneusViewIdDetector"
+              reports="HB_FORNEUS_VIEW_ID_SHOULD_BE_FINAL" />
+    <Detector class="com.worksap.findbugs.plugin.forneus.InvalidLocaleHolderInTagHandlerDetector"
+              reports="HB_FORNEUS_TAG_HANDLER_SHOULD_NOT_TOUCH_LOCALE_HOLDER" />
+    <Detector class="com.worksap.findbugs.plugin.version.UsingBackwardUntil" reports="HB_USE_BACKWARD_API,HB_USE_BACKWARD_API_WITH_UNKNOWN_VERSION,HB_USE_REMOVE_TARGET_BACKWARD_API,HB_USE_OVERDUE_BACKWARD_API" />
+    <Detector class="com.worksap.findbugs.plugin.core.IncorrectCacheDetector" reports="HB_USE_CACHE_MANAGER_DIRECTLY,HB_USE_CACHE_DIRECTLY" />
+    <Detector class="com.worksap.findbugs.plugin.core.GuardedConfigurationDetector" reports="HB_NO_VALUE_FOR_GUARDED_CONFIGURATION,HB_INCORRECT_VALUE_FOR_GUARDED_CONFIGURATION" />
+    <Detector class="com.worksap.findbugs.plugin.forneus.NonDynamicForneusViewIdDetector"
+              reports="HB_SHOULD_NOT_CONSTRUCT_FORNEUSVIEWID_DYNAMICALLY" />
+    <Detector class="com.worksap.findbugs.plugin.spring.ImportWithoutConfigClassDetector"
+              reports="HB_SPRING_IMPORT_WITHOUT_CONFIG" />
+    <BugPattern type="HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_DAO" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_SHARED_SERVICE" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_JAVA_UTIL_DATE" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_CREATE_SQL_CONNECTION" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_GET_SQL_CONNECTION_FROM_DATASOURCE" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_SQL_CONNECTION" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_FORNEUS_VIEW_ID_SHOULD_BE_FINAL" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_FORNEUS_TAG_HANDLER_SHOULD_NOT_TOUCH_LOCALE_HOLDER" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_BACKWARD_API_WITH_UNKNOWN_VERSION" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_BACKWARD_API" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_REMOVE_TARGET_BACKWARD_API" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_OVERDUE_BACKWARD_API" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_CACHE_MANAGER_DIRECTLY" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_USE_CACHE_DIRECTLY" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_NO_VALUE_FOR_GUARDED_CONFIGURATION" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_INCORRECT_VALUE_FOR_GUARDED_CONFIGURATION" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_SHOULD_NOT_CONSTRUCT_FORNEUSVIEWID_DYNAMICALLY" abbrev="HB" category="CORRECTNESS"/>
+    <BugPattern type="HB_SPRING_IMPORT_WITHOUT_CONFIG" abbrev="HB" category="CORRECTNESS"/>
+</FindbugsPlugin>
