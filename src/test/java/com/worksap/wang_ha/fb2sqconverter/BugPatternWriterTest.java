@@ -19,9 +19,12 @@ public class BugPatternWriterTest {
         BugPattern bugPattern1 = new BugPattern("HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_DAO", "correctness");
         bugPattern1.setName("Controller never depends on DAO.");
         bugPattern1.setDescription("<p>Controller never depend on DAO.</p>");
+        bugPattern1.addTag("WAP");
         BugPattern bugPattern2 = new BugPattern("HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE", "correctness");
         bugPattern2.setName("SharedService should not depend on Service.");
         bugPattern2.setDescription("SharedService should not depend on Service.");
+        bugPattern2.addTag("WAP");
+        bugPattern2.addTag("hello");
         List<BugPattern> bugPatterns = Arrays.asList(bugPattern1, bugPattern2);
         writer.write(bugPatterns);
 
@@ -31,12 +34,15 @@ public class BugPatternWriterTest {
                 "    <name>Controller never depends on DAO.</name>\n" +
                 "    <description><![CDATA[<p>Controller never depend on DAO.</p>]]></description>\n" +
                 "    <tag>correctness</tag>\n" +
+                "    <tag>WAP</tag>\n" +
                 "  </rule>\n" +
                 "  <rule key=\"HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE\" priority=\"MAJOR\">\n" +
                 "    <configKey>HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE</configKey>\n" +
                 "    <name>SharedService should not depend on Service.</name>\n" +
                 "    <description><![CDATA[SharedService should not depend on Service.]]></description>\n" +
                 "    <tag>correctness</tag>\n" +
+                "    <tag>WAP</tag>\n" +
+                "    <tag>hello</tag>\n" +
                 "  </rule>\n" +
                 "</rules>\n", stringWriter.toString());
     }

@@ -54,6 +54,12 @@ public class BugPatternWriter {
             Element category = document.createElement("tag");
             category.setTextContent(bugPattern.getCategory());
             rule.appendChild(category);
+
+            for (String tag: bugPattern.getTags()) {
+                Element tagElement = document.createElement("tag");
+                tagElement.setTextContent(tag);
+                rule.appendChild(tagElement);
+            }
         }
 
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
