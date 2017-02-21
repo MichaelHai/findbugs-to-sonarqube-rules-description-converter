@@ -34,14 +34,14 @@ public class BugPatternWriterTest {
                 "    <name>Controller never depends on DAO.</name>\n" +
                 "    <description><![CDATA[<p>Controller never depend on DAO.</p>]]></description>\n" +
                 "    <tag>correctness</tag>\n" +
-                "    <tag>WAP</tag>\n" +
+                "    <tag>wap</tag>\n" +
                 "  </rule>\n" +
                 "  <rule key=\"HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE\" priority=\"MAJOR\">\n" +
                 "    <configKey>HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE</configKey>\n" +
                 "    <name>SharedService should not depend on Service.</name>\n" +
                 "    <description><![CDATA[SharedService should not depend on Service.]]></description>\n" +
                 "    <tag>correctness</tag>\n" +
-                "    <tag>WAP</tag>\n" +
+                "    <tag>wap</tag>\n" +
                 "    <tag>hello</tag>\n" +
                 "  </rule>\n" +
                 "</rules>\n", stringWriter.toString());

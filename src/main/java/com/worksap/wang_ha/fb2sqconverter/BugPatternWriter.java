@@ -57,7 +57,7 @@ public class BugPatternWriter {
 
             for (String tag: bugPattern.getTags()) {
                 Element tagElement = document.createElement("tag");
-                tagElement.setTextContent(tag);
+                tagElement.setTextContent(tag.trim().toLowerCase());
                 rule.appendChild(tagElement);
             }
         }
