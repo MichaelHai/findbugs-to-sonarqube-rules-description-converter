@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MessageCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="messagecollection.xsd">
+	<Plugin>
+		<ShortDescription>FindBugs Plugin for HUE</ShortDescription>
+		<Details>Provides detectors of the HUE development.</Details>
+	</Plugin>
+
+	<Detector class="com.worksap.findbugs.plugin.core.ControllerFieldUsageDetector">
+		<Details>
+			Finds illegal use-case of field in Controller.
+		</Details>
+	</Detector>
+
+	<BugPattern type="HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_DAO">
+		<ShortDescription>Controller never depends on DAO.</ShortDescription>
+		<LongDescription>Controller never depends on DAO.</LongDescription>
+		<Details>
+<![CDATA[
+<p>Controller never depend on DAO.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+	<BugPattern type="HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_SHARED_SERVICE">
+		<ShortDescription>Controller should not depend on SharedService.</ShortDescription>
+		<LongDescription>Use Service instead.</LongDescription>
+		<Details>
+<![CDATA[
+<p>Controller shouldn't depend on SharedService directly, use Service instead.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+	<Detector class="com.worksap.findbugs.plugin.core.ServiceFieldUsageDetector">
+		<Details>
+			Finds illegal use-case of field in Service.
+		</Details>
+	</Detector>
+
+	<BugPattern type="HB_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE">
+		<ShortDescription>Service should not depend on Service.</ShortDescription>
+		<LongDescription>Use SharedService instead.</LongDescription>
+		<Details>
+<![CDATA[
+<p>Child of Service should be SharedService or LegacyService, generally SharedService is better.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+	<Detector class="com.worksap.findbugs.plugin.core.SharedServiceFieldUsageDetector">
+		<Details>
+			Finds illegal use-case of field in SharedService.
+		</Details>
+	</Detector>
+
+	<BugPattern type="HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE">
+		<ShortDescription>SharedService should not depend on Service.</ShortDescription>
+		<LongDescription>SharedService should not depend on Service.</LongDescription>
+		<Details>SharedService should not depend on Service.</Details>
+	</BugPattern>
+
+	<Detector class="com.worksap.findbugs.plugin.java.JavaUtilDateDetector">
+		<Details>
+			Finds usage of java.util.Date.
+		</Details>
+	</Detector>
+
+	<BugPattern type="HB_USE_JAVA_UTIL_DATE">
+		<ShortDescription>Not use java.util.Date.</ShortDescription>
+		<LongDescription>Use ZonedDateTime/LocalDate instead.</LongDescription>
+		<Details>
+<![CDATA[
+<p>The class java.util.Date is not good for globalization support. We must remove it from our code.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+	<Detector class="com.worksap.findbugs.plugin.java.SQLConnectionDetector">
+		<Details>
+			Finds usage of java.sql.Connection.
+		</Details>
+	</Detector>
+
+	<BugPattern type="HB_CREATE_SQL_CONNECTION">
+		<ShortDescription>NEVER create java.sql.Connection.</ShortDescription>
+		<LongDescription>If you need to use java.sql.Connection, you should get from connection pool.</LongDescription>
+		<Details>
+<![CDATA[
+<p>Never create new java.sql.Connection. If you need to use java.sql.Connection, you should get from connection pool.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+	<BugPattern type="HB_GET_SQL_CONNECTION_FROM_DATASOURCE">
+		<ShortDescription>Find getting java.sql.Connection.</ShortDescription>
+		<LongDescription>HUE use KVS. Why you need SQL connection?</LongDescription>
+		<Details>
+<![CDATA[
+<p>You should justify this usage or remove it.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+	<BugPattern type="HB_USE_SQL_CONNECTION">
+		<ShortDescription>Not use java.sql.Connection.</ShortDescription>
+		<LongDescription>HUE use KVS. Why you need SQL connection?</LongDescription>
+		<Details>
+<![CDATA[
+<p>You should justify this usage or remove it.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+	<Detector class="com.worksap.findbugs.plugin.forneus.NonFinalForneusViewIdDetector">
+		<Details>
+			Finds usage ForneusViewId in Controllers.
+		</Details>
+	</Detector>
+
+	<BugPattern type="HB_FORNEUS_VIEW_ID_SHOULD_BE_FINAL">
+		<ShortDescription>ForneusViewId in Controller should be final field.</ShortDescription>
+		<LongDescription>To support warm-up feature of Forneus, all ForneusViewId should be final field.</LongDescription>
+		<Details>
+<![CDATA[
+<p>To support warm-up feature of Forneus, all ForneusViewId should be final field.</p>
+]]>
+		</Details>
+	</BugPattern>
+
+    <Detector class="com.worksap.findbugs.plugin.forneus.InvalidLocaleHolderInTagHandlerDetector">
+        <Details>
+            Finds invalid usage LocaleHolder in TagHandlers.
+        </Details>
+    </Detector>
+
+    <BugPattern type="HB_FORNEUS_TAG_HANDLER_SHOULD_NOT_TOUCH_LOCALE_HOLDER">
+        <ShortDescription>TagHandler must not call LocaleHolder. Use text resource instead.</ShortDescription>
+        <LongDescription>TagHandler must not call LocaleHolder. Use text resource instead.</LongDescription>
+        <Details>
+<![CDATA[
+<p>TagHandler must not call LocaleHolder. Use text resource instead.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+	<Detector class="com.worksap.findbugs.plugin.version.UsingBackwardUntil">
+		<Details>
+			Finds over time limit usage of @BackwardUntil APIs.
+		</Details>
+	</Detector>
+
+    <BugPattern type="HB_USE_BACKWARD_API_WITH_UNKNOWN_VERSION">
+        <ShortDescription>@BackwardUntil API you use will be removed.</ShortDescription>
+        <LongDescription>Find bugs can not check MANIFEST.MF. So you must check the usage of {1} and @BackwardUntil limit version.</LongDescription>
+        <Details>
+<![CDATA[
+<p>@BackwardUntil show you the time limit of its support. And this warning means you are using it but find bugs can not get your application version. Please check the version yourself.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="HB_USE_BACKWARD_API">
+        <ShortDescription>@BackwardUntil API you use will be removed at near the future.</ShortDescription>
+        <LongDescription>It is better to stop using {1}. Because it will be removed near the future.</LongDescription>
+        <Details>
+<![CDATA[
+<p>@BackwardUntil show you the time limit of its support. And this warning means it is the time to be removed.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="HB_USE_REMOVE_TARGET_BACKWARD_API">
+        <ShortDescription>@BackwardUntil API you use will be removed at this version.</ShortDescription>
+        <LongDescription>You must remove to use {1} at this version.</LongDescription>
+        <Details>
+<![CDATA[
+<p>@BackwardUntil show you the time limit of its support. And this warning means the time comes.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="HB_USE_OVERDUE_BACKWARD_API">
+        <ShortDescription>@BackwardUntil API you use should be removed at before version!</ShortDescription>
+        <LongDescription>You must remove to use {1} as soon as possible!</LongDescription>
+        <Details>
+<![CDATA[
+<p>@BackwardUntil show you the time limit of its support. And this warning means the time has been passed!</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <Detector class="com.worksap.findbugs.plugin.core.GuardedConfigurationDetector">
+        <Details>
+            Finds incorrect usage of @GuardedConfiguration.
+        </Details>
+    </Detector>
+
+    <BugPattern type="HB_NO_VALUE_FOR_GUARDED_CONFIGURATION">
+        <ShortDescription>Value of @GuardedConfiguration should be same with annotated class.</ShortDescription>
+        <LongDescription>You must use {1} as value of this annotation.</LongDescription>
+        <Details>
+<![CDATA[
+<p>Value of @GuardedConfiguration should be same with annotated class.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="HB_INCORRECT_VALUE_FOR_GUARDED_CONFIGURATION">
+        <ShortDescription>Value of @GuardedConfiguration should be same with annotated class.</ShortDescription>
+        <LongDescription>You must use {1} as value of this annotation.</LongDescription>
+        <Details>
+<![CDATA[
+<p>Value of @GuardedConfiguration should be same with annotated class.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <Detector class="com.worksap.findbugs.plugin.core.IncorrectCacheDetector">
+        <Details>
+            Finds incorrect usage of cache.
+        </Details>
+    </Detector>
+
+    <BugPattern type="HB_USE_CACHE_MANAGER_DIRECTLY">
+        <ShortDescription>Do not call CacheManager directly, use CacheSupport instead.</ShortDescription>
+        <LongDescription>Do not call CacheManager directly, use CacheSupport instead.</LongDescription>
+        <Details>
+<![CDATA[
+<p>Do not call CacheManager directly, use CacheSupport instead.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="HB_USE_CACHE_DIRECTLY">
+        <ShortDescription>Do not call Cache directly, use CacheSupport instead.</ShortDescription>
+        <LongDescription>Do not call Cache directly, use CacheSupport instead.</LongDescription>
+        <Details>
+<![CDATA[
+<p>Do not call Cache directly, use CacheSupport instead.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+	<Detector class="com.worksap.findbugs.plugin.forneus.NonDynamicForneusViewIdDetector">
+        <Details>
+            Find incorrect constructing of ForneusViewId.
+        </Details>
+    </Detector>
+    
+    <BugPattern type="HB_SHOULD_NOT_CONSTRUCT_FORNEUSVIEWID_DYNAMICALLY">
+    	<ShortDescription>Do not construct ForneusViewId dynamically.</ShortDescription>
+        <LongDescription>Do not construct ForneusViewId dynamically.</LongDescription>
+        <Details>
+<![CDATA[
+<p>Do not construct ForneusViewId dynamically.</p>
+<p>To make skeleton warmup successfully, please construct all ForneusViewId in &lt;init&gt;, don't construct new ForneusViewId in requst handing methods.</p>
+<p>You can make your controller extend from ForneusViewController to ensure you follow the rule.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <Detector class="com.worksap.findbugs.plugin.spring.ImportWithoutConfigClassDetector">
+        <Details>
+            Find incorrect usage of @Import annotation. Check [hue-dev-info:04447] for detail.
+        </Details>
+    </Detector>
+    
+    <BugPattern type="HB_SPRING_IMPORT_WITHOUT_CONFIG">
+        <ShortDescription>@Import annotation is available only on Configuration class.</ShortDescription>
+        <LongDescription>@Import annotation is available only on Configuration class which is annotated with @GuardedConfiguration.</LongDescription>
+        <Details>
+<![CDATA[
+<p>@Import annotation is available only on Configuration class which is annotated with @GuardedConfiguration.</p>
+]]>
+        </Details>
+    </BugPattern>
+
+	<BugCode abbrev="HB">HUE Bug</BugCode>
+</MessageCollection>
