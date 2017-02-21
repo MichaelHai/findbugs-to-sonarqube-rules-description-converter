@@ -15,9 +15,9 @@ public class BugPatternReader {
     private final String patternFile;
     private final String messageFile;
 
-    public BugPatternReader() {
-        this.patternFile = getClass().getResource("/findbugs.xml").getFile();
-        this.messageFile = getClass().getResource("/messages.xml").getFile();
+    public BugPatternReader(String patternFile, String messageFile) {
+        this.patternFile = patternFile;
+        this.messageFile = messageFile;
     }
 
     public List<BugPattern> readPatterns() throws ParserConfigurationException, IOException, SAXException {

@@ -1,5 +1,6 @@
 package com.worksap.wang_ha.fb2sqconverter;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
@@ -11,9 +12,18 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class BugPatternReaderTest {
+    private BugPatternReader reader;
+
+    @Before
+    public void setup() {
+        String patternFile = getClass().getResource("/findbugs.xml").getFile();
+        String messageFile = getClass().getResource("/messages.xml").getFile();
+        this.reader = new BugPatternReader(patternFile, messageFile);
+    }
+
+
     @Test
     public void testBugPatternKeyCanBeReadFromDefaultFile() throws Exception {
-        BugPatternReader reader = new BugPatternReader();
         List<BugPattern> patterns = reader.readPatterns();
 
         assertEquals(20, patterns.size());
@@ -25,7 +35,6 @@ public class BugPatternReaderTest {
     public void testBugDetailInformationWithCDATACanBeRetrievedFromDefaultFile() throws ParserConfigurationException, SAXException, IOException {
         BugPattern bugPattern = new BugPattern("HB_CONTROLLER_SHOULD_NOT_DEPEND_ON_DAO", "correctness");
 
-        BugPatternReader reader = new BugPatternReader();
         reader.readDetailInformationTo(bugPattern);
 
         assertEquals("Controller never depends on DAO.", bugPattern.getName());
@@ -36,7 +45,6 @@ public class BugPatternReaderTest {
     public void testBugDetailInformationWithNormalDetailsCanBeRetrievedFromDefaultFile() throws ParserConfigurationException, SAXException, IOException {
         BugPattern bugPattern = new BugPattern("HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE", "correctness");
 
-        BugPatternReader reader = new BugPatternReader();
         reader.readDetailInformationTo(bugPattern);
 
         assertEquals("SharedService should not depend on Service.", bugPattern.getName());
@@ -49,7 +57,6 @@ public class BugPatternReaderTest {
         BugPattern bugPattern2 = new BugPattern("HB_SHARED_SERVICE_SHOULD_NOT_DEPEND_ON_SERVICE", "correctness");
         List<BugPattern> patterns = Arrays.asList(bugPattern1, bugPattern2);
 
-        BugPatternReader reader = new BugPatternReader();
         reader.readDetailInformationTo(patterns);
 
         assertEquals("Controller never depends on DAO.", patterns.get(0).getName());
