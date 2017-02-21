@@ -55,6 +55,12 @@ public class BugPatternWriter {
             category.setTextContent(bugPattern.getCategory());
             rule.appendChild(category);
 
+            if (bugPattern.getCategory().trim().equalsIgnoreCase("correctness")) {
+                Element type = document.createElement("tag");
+                type.setTextContent("bug");
+                rule.appendChild(type);
+            }
+
             for (String tag: bugPattern.getTags()) {
                 Element tagElement = document.createElement("tag");
                 tagElement.setTextContent(tag.trim().toLowerCase());
