@@ -53,14 +53,8 @@ public class BugPatternReader {
             if (type.equals(bugPattern.getKey())) {
                 String name = ((Element) item).getElementsByTagName("ShortDescription").item(0).getTextContent();
                 bugPattern.setName(name);
-                Node descriptionNode = ((Element) item).getElementsByTagName("Details").item(0);
-                if (descriptionNode.getFirstChild().getNextSibling() instanceof CDATASection) {
-                    String description = "<![CDATA[\n" + descriptionNode.getTextContent().trim() + "\n]]>";
-                    bugPattern.setDescription(description);
-                } else {
-                    String description = descriptionNode.getTextContent();
-                    bugPattern.setDescription(description);
-                }
+                String description = ((Element) item).getElementsByTagName("Details").item(0).getTextContent().trim();
+                bugPattern.setDescription(description);
             }
 
         }

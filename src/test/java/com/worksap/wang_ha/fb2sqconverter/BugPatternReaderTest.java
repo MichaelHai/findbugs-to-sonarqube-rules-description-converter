@@ -29,9 +29,7 @@ public class BugPatternReaderTest {
         reader.readDetailInformationTo(bugPattern);
 
         assertEquals("Controller never depends on DAO.", bugPattern.getName());
-        assertEquals("<![CDATA[\n" +
-                "<p>Controller never depend on DAO.</p>\n" +
-                "]]>", bugPattern.getDescription());
+        assertEquals("<p>Controller never depend on DAO.</p>", bugPattern.getDescription());
     }
 
     @Test
@@ -43,7 +41,6 @@ public class BugPatternReaderTest {
 
         assertEquals("SharedService should not depend on Service.", bugPattern.getName());
         assertEquals("SharedService should not depend on Service.", bugPattern.getDescription());
-
     }
 
     @Test
